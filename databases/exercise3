@@ -1,0 +1,171 @@
+1) create database SALES ; 
+
+
+CREATE TABLE customers (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    name TEXT,
+    email TEXT); 
+
+create table orders(orderID INTEGER PRIMARY KEY AUTO_INCREMENT, orderNumber INTEGER NOT NULL,  customerID INTEGER, FOREIGN KEY (customerID) REFERENCES customers (id) , salesID INTEGER, FOREIGN KEY (salesID) REFERENCES salesperson(id)) ;
+
+
+
+create table salesperson(id INTEGER PRIMARY KEY AUTO_INCREMENT , name TEXT, email TEXT)  ; 
+
+insert into customers(name,email) values("Sarthak", "sarthakmehta@gmail.com");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into customers(name,email) values("Hardik", "hardikagarwal@gmail.com");
+Query OK, 1 row affected (0.31 sec)
+
+mysql> insert into customers(name,email) values("Abhishek", "abhishekvats@gmail.com");
+Query OK, 1 row affected (0.32 sec)
+
+mysql> insert into customers(name,email) values("shivangi", "shivangisharma@gmail.com");
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into customers(name,email) values("kanika", "kanikasomani@gmail.com");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from customers ; 
++----+----------+--------------------------+
+| id | name     | email                    |
++----+----------+--------------------------+
+|  1 | Sarthak  | sarthakmehta@gmail.com   |
+|  2 | Hardik   | hardikagarwal@gmail.com  |
+|  3 | Abhishek | abhishekvats@gmail.com   |
+|  4 | shivangi | shivangisharma@gmail.com |
+|  5 | kanika   | kanikasomani@gmail.com   |
++----+----------+--------------------------+
+
+
+
+insert into salesperson(name, email) values ("Anubhav", "anubhavgogoi@gmail.com") ; 
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into salesperson(name, email) values ("Anurag", "anuragkotnala@gmail.com") ;
+Query OK, 1 row affected (0.32 sec)
+
+mysql> insert into salesperson(name, email) values ("Aayush", "aayushgupta@gmail.com") ;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from salesperson ; 
++----+---------+-------------------------+
+| id | name    | email                   |
++----+---------+-------------------------+
+|  1 | Anubhav | anubhavgogoi@gmail.com  |
+|  2 | Anurag  | anuragkotnala@gmail.com |
+|  3 | Aayush  | aayushgupta@gmail.com   |
++----+---------+-----------
+
+
+insert into orders(orderNumber, customerID, salesID) values (62010,5, 3) ;
+
+
+
+mysql> select * from orders ;
++---------+-------------+------------+---------+
+| orderID | orderNumber | customerID | salesID |
++---------+-------------+------------+---------+
+|       1 |       62001 |          1 |       1 |
+|       2 |       62002 |          1 |       3 |
+|       4 |       62003 |          2 |       3 |
+|       5 |       62004 |          4 |       3 |
+|       6 |       62005 |          5 |       2 |
+|       7 |       62006 |          4 |       3 |
+|       8 |       62007 |          3 |       2 |
+|       9 |       62008 |          4 |       1 |
+|      10 |       62010 |          5 |       3 |
+|      11 |       62011 |          3 |       2 |
+|      12 |       62012 |          2 |       1 |
++---------+-------------+------------+---------+
+
+
+
+
+
+5) select * from salesperson where id IN (select salesID from orders group by salesID having count(salesID) > 1) ;
+
+mysql> select salesID from orders group by salesID having count(salesID) > 1;
++---------+
+| salesID |
++---------+
+|       1 |
+|       2 |
+|       3 |
++---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from salesperson where id IN (select salesID from orders group by salesID having count(salesID) > 1) ;
++----+---------+-------------------------+
+| id | name    | email                   |
++----+---------+-------------------------+
+|  1 | Anubhav | anubhavgogoi@gmail.com  |
+|  2 | Anurag  | anuragkotnala@gmail.com |
+|  3 | Aayush  | aayushgupta@gmail.com   |
++----+---------+-------------------------+
+3 rows in set (0.00 sec)
+
+
+
+6) select orderNumber, orderID, id, name, email from orders,salesperson where orders.salesID = salesperson.id ; 
++-------------+---------+----+---------+-------------------------+
+| orderNumber | orderID | id | name    | email                   |
++-------------+---------+----+---------+-------------------------+
+|       62001 |       1 |  1 | Anubhav | anubhavgogoi@gmail.com  |
+|       62008 |       9 |  1 | Anubhav | anubhavgogoi@gmail.com  |
+|       62012 |      12 |  1 | Anubhav | anubhavgogoi@gmail.com  |
+|       62005 |       6 |  2 | Anurag  | anuragkotnala@gmail.com |
+|       62007 |       8 |  2 | Anurag  | anuragkotnala@gmail.com |
+|       62011 |      11 |  2 | Anurag  | anuragkotnala@gmail.com |
+|       62002 |       2 |  3 | Aayush  | aayushgupta@gmail.com   |
+|       62003 |       4 |  3 | Aayush  | aayushgupta@gmail.com   |
+|       62004 |       5 |  3 | Aayush  | aayushgupta@gmail.com   |
+|       62006 |       7 |  3 | Aayush  | aayushgupta@gmail.com   |
+|       62010 |      10 |  3 | Aayush  | aayushgupta@gmail.com   |
+|       62010 |      13 |  4 | Hitesh  | hiteshpatidar.com       |
++-------------+---------+----+---------+-------------------------+
+12 rows in set (0.00 sec)
+
+
+
+7) mysql> create index idx ON orders(orderNumber ) ; 
+Query OK, 0 rows affected (0.42 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+8) mysql> show index from orders  ;
++--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| Table  | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment |
++--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+| orders |          0 | PRIMARY    |            1 | orderID     | A         |          12 |     NULL | NULL   |      | BTREE      |         |               |
+| orders |          1 | customerID |            1 | customerID  | A         |           6 |     NULL | NULL   | YES  | BTREE      |         |               |
+| orders |          1 | salesID    |            1 | salesID     | A         |           4 |     NULL | NULL   | YES  | BTREE      |         |               |
+| orders |          1 | idx        |            1 | orderNumber | A         |          11 |     NULL | NULL   |      | BTREE      |         |               |
++--------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+
+
+
+
+9) mysql> select o.orderNumber,s.name as Sales_Person, c.name as Customer from orders o join salesperson s on o.salesID = s.id join customers c on c.id = o.customerID ;
++-------------+--------------+----------+
+| orderNumber | Sales_Person | Customer |
++-------------+--------------+----------+
+|       62001 | Anubhav      | Sarthak  |
+|       62008 | Anubhav      | shivangi |
+|       62012 | Anubhav      | Hardik   |
+|       62005 | Anurag       | kanika   |
+|       62007 | Anurag       | Abhishek |
+|       62011 | Anurag       | Abhishek |
+|       62002 | Aayush       | Sarthak  |
+|       62003 | Aayush       | Hardik   |
+|       62004 | Aayush       | shivangi |
+|       62006 | Aayush       | shivangi |
+|       62010 | Aayush       | kanika   |
+|       62010 | Hitesh       | prerna   |
++-------------+--------------+----------+
+12 rows in set (0.00 sec)
+
+
+
+
