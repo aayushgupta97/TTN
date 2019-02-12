@@ -8,3 +8,5 @@ alert("The Value of Simple Interest is : " + S) ;
 
 alert("The total amout is: " + (p*(1+r*t))) ;
 
+document.getElementById("si").innerHTML = S ;
+
