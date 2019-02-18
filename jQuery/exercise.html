@@ -2,14 +2,15 @@
 <html>
 <head>
 	<title>jquery</title>
-
+	<link rel="stylesheet" type="text/css" href="exercise.css">
+	<!-- <link rel="stylesheet" type="text/css" href=""> -->
 
 </head>
 <body>
 
 	<h1 id="test"> Question 2</h1>
 	<p class="ttnew">Question 3</p>
-	<input type="submit" name="question4">
+	<input type="submit" id="q4" name="question4">
 	
 	<!-- question5 -->
 	<div id="main">
@@ -24,6 +25,122 @@
 	<h4 class="clickme" id="clickit">Click Me</h4>
 
 
+	<!-- question 9  -->
+<div id="show-select">You have selected:  <span id="text-select"></span></div>
+	<select id="q9">
+		<option class="select-option" value="volvo">volvo</option>
+		<option class="select-option" value="mercedes">mercedes</option>
+		<option class="select-option" value="Audi">Audi</option>
+	</select>
+
+	<!-- question 10 -->
+	<br>
+	 <div id='hover-text'>HOVER OVER TO SHOW/HIDE SELECT INPUT</div>
+        <select id='select-to-show' style='display:none'>
+            <option class='select-option' value="Volvo">Volvo</option>
+            <option class='select-option' value="Saab">Saab</option>
+            <option class='select-option' value="Mercedes">Mercedes</option>
+            <option class='select-option' value="Audi">Audi</option>
+</select>
+
+	<!-- question 11	 -->
+	<h3>11) Google</h3>
+	<a href="https://google.com">Google</a>
+	<br> <br>
+	<!-- question 12 -->
+	<div id='parent-click'>
+            Pure Parent Content
+            <ol id='child-click'>
+                <li>Child 1</li>
+                <li>Child 2</li>
+</ol> </div>
+
+	<!-- question 14 -->
+	<h3>14)</h3>
+    <p>Change color of every cell which has numberl larger than 10.</p>
+    <table class="tdd">
+            <tr>
+              <td>1</td>
+              <td>548785</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>4</td>
+              <td>56</td>
+            </tr>
+            <tr>
+              <td>77</td>
+              <td>5</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>1232</td>
+              <td>.22</td>
+              <td>89</td>
+            </tr>
+          </table>
+          <button class="buttonColor">Click Me To Change Colour</button>
+
+
+
+          <!-- question 15  -->
+           <div id='ajax-res'></div>
+
+           <!-- question 16 -->
+
+            <table id='delete-table'>
+            <tr>
+                <th></th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td>    
+                <td>11</td>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td> 
+                <td>10<span class='cross-button'></span></td>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td> 
+                <td>9<span class='cross-button'></span></td>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td> 
+                <td>13<span class='cross-button'></span></td>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td>     
+                <td>100<span class='cross-button'></span></td>
+            </tr>
+            <tr>
+                <td class='cross-button'>&times</td> 
+                <td>27<span class='cross-button'></span></td>
+            </tr>
+</table>
+
+
+           <h3>Question 17</h3>
+    <p>Create a image array and in div create a slide show to animate images of delay of 500ms.</p>
+
+    <div class="container">
+            <div class="header">
+                <h1 class="text-muted">jQuery Basic Slider</h1>
+            </div>
+
+            <div id="slider">
+                <ul class="slides">
+                    <li class="slide slide1">slide1</li>
+                    <li class="slide slide2">slide2</li>
+                    <li class="slide slide3">slide3</li>
+                    <li class="slide slide4">slide4</li>
+                    <li class="slide slide5">slide5</li>
+                    <li class="slide slide1">slide1</li>
+                </ul>
+            </div>
+
+        </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
 integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 crossorigin="anonymous"></script>
