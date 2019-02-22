@@ -22,8 +22,28 @@ new_list = list(map(lambda x : x**2 , my_list))
 print(new_list)
 
 
-print("\n\nQuestion 5")
-Test_data =  [ {"name" : "abhi", "age" : 22}, { "name" : "vikas", "age" : 21} ]
+# print("\n\nQuestion 5")
+# Test_data =  [ {"name" : "abhi", "age" : 22}, { "name" : "vikas", "age" : 21} ]
 
-for i in range(len(Test_data)):
-    print(f"name {Test_data[i]['name']}\nage : {Test_data[i]['age']}")
+# for i in range(len(Test_data)):
+#     print(f"name {Test_data[i]['name']}\nage : {Test_data[i]['age']}")
+print("\n\nQuestion 5")
+Test_data =  ({"name" : "abhi", "age" : 22}, { "name" : "vikas", "age" : 21})
+
+print(len(Test_data))
+def my_function(*args):
+    for i in args:
+    
+        print(f"name {i['name']}\nage : {i['age']}")
+    
+
+my_function(*Test_data)
+
+
+
+
+
+
+#     for k in range(len(args)):
+    #         print(f"name {i[k]['name']}\nage : {i[k]['age']}")
+    # print(len(args))
