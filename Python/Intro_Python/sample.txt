@@ -1,0 +1,10 @@
+This is the first line
+This is the second line
+This is the third line
+This is not fifth line
+This will calculate max word repeats
+sixth line
+This may be seventh line
+This might be eight line
+This line is ninth
+This is the last row
