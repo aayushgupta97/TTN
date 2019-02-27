@@ -92,4 +92,18 @@ for prime in gen_prime():
 
 
 # Question 5
+def conversion(digit, unit1, unit2):
+	unit = {'km': 1000,
+			'm':1,
+			'cm':0.01,
+			'mm' : 0.001}
 
+	return digit * (unit[unit1] / unit[unit2])
+
+print("Use km for kilometers\nUse m for metres\nUse cm for centimeters\nUse mm for milimeters")
+unit1 = input("Enter the unit you want to use: ")
+unit2 = input("Enter the unit you want to convert to: ")
+
+digit = float(input("Enter the value to convert: "))
+output = conversion(digit, unit1, unit2)
+print(output)
