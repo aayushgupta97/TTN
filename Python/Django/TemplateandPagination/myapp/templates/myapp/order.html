@@ -1,0 +1,69 @@
+{% load static %}
+{% load Tags_custom %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Order</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+
+
+<h1>Name: {{ person_name }}</h1>
+
+{% for k in order_list %}
+	<h3> Item Name: {{ k }} </h3>
+{% endfor %}
+
+{% if ordered_warranty %}
+<h4> Product is still in warranty </h4>
+{% else %}
+<h4> Products Warranty is Void </h4>
+{% endif %}
+
+
+
+
+
+<div class="container">
+{% for num in numbers %}
+	<p>{{num}}</p>
+{%endfor%}
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if numbers.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ numbers.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ numbers.number }} of {{ numbers.paginator.num_pages }}.
+        </span>
+
+        {% if numbers.has_next %}
+            <a href="?page={{ numbers.next_page_number }}">next</a>
+            <a href="?page={{ numbers.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+
+
+<br>
+<br>
+<h1>custom tags and filters</h1>
+
+<h3>Filter to convert to lower case</h3>
+<h4> {{ Capital_name }} to lower :  {{ Capital_name | lower }}</h4>
+
+
+  {% custom_tag as queries %}
+  <ul>
+    Length of List: {{queries}}
+  </ul>
+
+
+</body>
+</html>
