@@ -1,5 +1,3 @@
-from django.shortcuts import render
-
 # Create your views here.
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
@@ -11,8 +9,8 @@ import os
 # Create your views here.
 #this and above import we do to avoid some problems while POST
 @csrf_exempt
-def function_one(request,filename):
-
+def function_one(request,filename): 
+	
     if re.match('^[^\s@%$*#\^][\w\d]*',filename) is not None:
         try:
             if request.method=='GET':
@@ -26,7 +24,8 @@ def function_one(request,filename):
             elif request.method=='POST':
                 json_data = json.loads(request.body)
                 with open(filename,mode='w') as json_file:
-                    json.dump(json_data,json_file)
+                    json_file.write(str(json_data))
+                    # json.dump(json_data,json_file)
                 return HttpResponse('File created successfully')
 
             elif request.method == 'PUT':
